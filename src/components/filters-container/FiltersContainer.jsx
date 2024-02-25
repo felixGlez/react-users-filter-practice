@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import { StyledCheckbox, StyledFiltersContainer } from './styles';
 
-const FiltersContainer = () => {
-	const [isActive, setIsActive] = useState(false);
+const FiltersContainer = ({ action }) => {
 	return (
 		<StyledFiltersContainer>
 			<input type='text' />
 			<StyledCheckbox>
 				<p>Sólo activos</p>
-				<input
-					type='checkbox'
-					onChange={() => displayActives(isActive, setIsActive)}
-				/>
+				<input type='checkbox' onChange={action} />
 			</StyledCheckbox>
 			<select>
 				<option value='Por nombre'>Por defecto</option>
@@ -19,10 +14,6 @@ const FiltersContainer = () => {
 			</select>
 		</StyledFiltersContainer>
 	);
-};
-
-const displayActives = (isActive, setIsActive) => {
-	setIsActive(!isActive);
 };
 
 export default FiltersContainer;

@@ -1,29 +1,40 @@
-import { v4 } from 'uuid';
+import { useState } from 'react';
 import FiltersContainer from './components/filters-container/FiltersContainer';
 import MainContainer from './components/main-container/MainContainer';
-import UserCard from './components/user-card/UserCard';
-import { USERS } from './constants/users';
+
 import { GlobalStyles } from './styles/global-styles';
+import { USERS } from './constants/users';
+import UsersContainer from './components/users-container/UsersContainer';
 
 const App = () => {
-	<GlobalStyles />;
+	const [isActive, setIsActive] = useState(false);
+	const [users, setUsers] = useState(USERS);
+
+	console.log(isActive);
+	console.log(users);
+
 	return (
-		<MainContainer>
-			<h1>Listado de usuarios</h1>
-			<FiltersContainer />
-			{USERS.map(user => {
-				return (
-					<UserCard
-						key={v4()}
-						avatar={user.profileImage}
-						name={user.name}
-						username={user.username}
-						status={user.active}
-					/>
-				);
-			})}
-		</MainContainer>
+		<>
+			<GlobalStyles />
+			<MainContainer>
+				<h1>Listado de usuarios</h1>
+				<FiltersContainer
+					action={() => filterByActive(isActive, setIsActive, users, setUsers)}
+				/>
+				<UsersContainer users={users} />
+			</MainContainer>
+		</>
 	);
+};
+
+const filterByActive = (isActive, setIsActive, users, setUsers) => {
+	setIsActive(!isActive);
+
+	const filteredByActive = users.filter(user => user.active);
+
+	if (isActive) {
+		setUsers(filteredByActive);
+	}
 };
 
 export default App;

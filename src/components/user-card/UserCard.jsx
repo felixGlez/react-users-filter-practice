@@ -14,7 +14,9 @@ const UserCard = ({ avatar, name, username, status }) => {
 				<StyledName>{name}</StyledName>
 				<StyledName $weight={100}>@{username}</StyledName>
 			</div>
-			<StyledStatus>{status ? 'Activo' : 'Inactivo'}</StyledStatus>
+			<StyledStatus $color={status ? 'green' : 'red'}>
+				{status ? 'Activo' : 'Inactivo'}
+			</StyledStatus>
 			<StyledButton>Ver Detalles</StyledButton>
 		</StyledUserCard>
 	);
