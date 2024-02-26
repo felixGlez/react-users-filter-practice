@@ -2,6 +2,7 @@ import { v4 } from 'uuid';
 import UserCard from '../user-card/UserCard';
 
 const UsersContainer = ({ users }) => {
+	console.log(users);
 	return (
 		<>
 			{users.map(user => {
