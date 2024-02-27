@@ -29,4 +29,6 @@ export const filterByActive = (users, isActive) => {
 	return [...users];
 };
 
+const sortUsers = () => {};
+
 export default FiltersContainer;
