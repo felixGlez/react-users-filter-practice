@@ -1,11 +1,6 @@
-import { useState } from 'react';
-import { USERS } from '../../constants/users';
 import { StyledCheckbox, StyledFiltersContainer } from './styles';
 
-const FiltersContainer = ({ setUsers }) => {
-	const [isActive, setIsActive] = useState(false);
-	console.log(isActive);
-
+const FiltersContainer = ({ onlyActive, setOnlyActive, sortBy, setSortBy }) => {
 	return (
 		<StyledFiltersContainer>
 			<input type='text' />
@@ -13,10 +8,7 @@ const FiltersContainer = ({ setUsers }) => {
 				<p>Sólo activos</p>
 				<input
 					type='checkbox'
-					onChange={() => {
-						handleChecked(isActive, setIsActive);
-						filterByActive(isActive, setUsers);
-					}}
+					onChange={() => handleChecked(onlyActive, setOnlyActive)}
 				/>
 			</StyledCheckbox>
 			<select>
@@ -27,20 +19,14 @@ const FiltersContainer = ({ setUsers }) => {
 	);
 };
 
-const handleChecked = (isActive, setIsActive) => {
-	setIsActive(!isActive);
+const handleChecked = (onlyActive, setOnlyActive) => {
+	setOnlyActive(!onlyActive);
 };
 
-const filterByActive = (isActive, setUsers) => {
+export const filterByActive = (users, isActive) => {
 	// Los arrays originales nunca se tocan, por eso se hace una copia del array original
-	let newUsers = [...USERS];
-
-	if (isActive) {
-		newUsers = newUsers.filter(user => user.active);
-		setUsers(newUsers);
-	} else {
-		setUsers(newUsers);
-	}
+	if (isActive) return users.filter(user => user.active);
+	return [...users];
 };
 
 export default FiltersContainer;
