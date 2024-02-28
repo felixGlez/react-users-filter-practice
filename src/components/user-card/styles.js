@@ -23,7 +23,7 @@ const StyledName = styled.h3`
 `;
 
 const StyledStatus = styled.p`
-	color: ${({ $color }) => $color};
+	color: ${({ $color }) => ($color ? 'green' : 'red')};
 `;
 
 const StyledButton = styled.button`
