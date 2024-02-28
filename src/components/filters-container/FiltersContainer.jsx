@@ -23,9 +23,9 @@ const handleChecked = (onlyActive, setOnlyActive) => {
 	setOnlyActive(!onlyActive);
 };
 
-export const filterByActive = (users, isActive) => {
+export const filterByActive = (users, onlyActive) => {
 	// Los arrays originales nunca se tocan, por eso se hace una copia del array original
-	if (isActive) return users.filter(user => user.active);
+	if (onlyActive) return users.filter(user => user.active);
 	return [...users];
 };
 
