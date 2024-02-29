@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 const App = () => {
 	// SEARCH
+	const [search, setSearch] = useState('');
 	// ACTIVE
 	const [onlyActive, setOnlyActive] = useState(false);
 	// SORTED
@@ -29,6 +30,8 @@ const App = () => {
 					setOnlyActive={setOnlyActive}
 					sortBy={sortBy}
 					setSortBy={setSortBy}
+					search={search}
+					setSearch={setSearch}
 				/>
 				<UsersContainer users={filteredUsers} />
 			</MainContainer>

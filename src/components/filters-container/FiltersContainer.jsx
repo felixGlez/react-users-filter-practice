@@ -1,9 +1,16 @@
 import { StyledCheckbox, StyledFiltersContainer } from './styles';
 
-const FiltersContainer = ({ onlyActive, setOnlyActive, sortBy, setSortBy }) => {
+const FiltersContainer = ({
+	onlyActive,
+	setOnlyActive,
+	sortBy,
+	setSortBy,
+	search,
+	setSearch
+}) => {
 	return (
 		<StyledFiltersContainer>
-			<input type='text' />
+			<input type='text' onChange={event => handleSearch(setSearch, event)} />
 			<StyledCheckbox>
 				<p>Sólo activos</p>
 				<input
@@ -25,7 +32,7 @@ const handleChecked = (onlyActive, setOnlyActive) => {
 
 export const filterByActive = (users, onlyActive) => {
 	// Los arrays originales nunca se tocan, por eso se hace una copia del array original
-	if (onlyActive) return [...users].filter(user => user.active);
+	if (onlyActive) return users.filter(user => user.active);
 	return [...users];
 };
 
@@ -36,10 +43,12 @@ const handleDropDown = (setSortBy, event) => {
 };
 
 export const sortUsersByName = (users, sortBy) => {
-	const sortedUsers = [...users];
-	if (sortBy === 1)
-		return sortedUsers.sort((a, b) => a.name.localeCompare(b.name));
-	else if (sortBy === 0) return sortedUsers;
+	if (sortBy === 1) return users.sort((a, b) => a.name.localeCompare(b.name));
+	return [...users];
+};
+
+const handleSearch = (setSearch, event) => {
+	console.log(event.target.value);
 };
 
 export default FiltersContainer;
