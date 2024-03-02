@@ -3,6 +3,7 @@ import MainContainer from './components/main-container/MainContainer';
 import UsersContainer from './components/users-container/UsersContainer';
 import FiltersContainer, {
 	filterByActive,
+	filterBySearch,
 	sortUsersByName
 } from './components/filters-container/FiltersContainer';
 import { USERS } from './constants/users';
@@ -19,6 +20,7 @@ const App = () => {
 	// Almacenamos lo que devuelve filterByActive (además de ejecutar la función), para que cuando se vuelva a pintar el componente App (cuando hacemos clic en el checkbox), ya esté actualizado el estado isActive al nuevo valor y se pueda ejecutar en el momento correcto la función filterByActive.
 	let filteredUsers = filterByActive(USERS, onlyActive);
 	filteredUsers = sortUsersByName(filteredUsers, sortBy);
+	filteredUsers = filterBySearch(filteredUsers, search);
 
 	return (
 		<>

@@ -48,7 +48,16 @@ export const sortUsersByName = (users, sortBy) => {
 };
 
 const handleSearch = (setSearch, event) => {
-	console.log(event.target.value);
+	const inputValue = event.target.value;
+
+	setSearch(inputValue);
+};
+
+export const filterBySearch = (users, search) => {
+	const searchTerm = search.toLowerCase();
+	if (searchTerm)
+		return users.filter(user => user.name.toLowerCase().includes(searchTerm));
+	return [...users];
 };
 
 export default FiltersContainer;
